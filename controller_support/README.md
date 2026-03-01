@@ -21,7 +21,7 @@ The mod is already in place at `mods/controller_support/`. It loads automaticall
 | ---------------------- | ---------------------------------------------------------------- |
 | **Left Stick / D-pad** | Move (8 directions)                                              |
 | **Right Stick**        | Grid cursor — aim spells or examine tiles                        |
-| **A**                  | Confirm / Cast spell at cursor / Deploy                          |
+| **A**                  | Confirm / Cast spell at cursor / Deploy / Hold to walk-target    |
 | **B**                  | Cancel current spell / Abort deploy / Open options menu          |
 | **X**                  | Pass turn / Channel                                              |
 | **Y**                  | Open character sheet                                             |
@@ -78,6 +78,24 @@ When a spell or item is active (selected via browser or any other means):
 | **RT**                 | Cast / use at cursor position (alternative)     |
 | **B**                  | Cancel the spell                                |
 | **RB**                 | Tab to next valid target                        |
+
+### Walk-Target Mode (Hold A)
+
+When no spell is active during your turn, **hold A** to enter a 1-tile walk-targeting overlay. The game's own red/green tile highlights appear around the player:
+
+- **Green tiles** — the player can walk there (or swap with an ally)
+- **Red tiles** — blocked by walls, chasms, enemies, or other obstacles
+
+While holding A, point the **left stick** or **d-pad** in any of the 8 directions to select an adjacent tile. The cursor snaps instantly — no auto-repeat needed. Release **A** to walk to the highlighted tile, or press **B** to cancel.
+
+| Input                   | Action                                  |
+| ----------------------- | --------------------------------------- |
+| **Hold A**              | Enter walk-target mode (shows overlays) |
+| **Left Stick / D-pad**  | Select adjacent tile                    |
+| **Release A**           | Walk to the selected tile               |
+| **B** (while holding A) | Cancel without moving                   |
+
+> **Note:** Walk-target only activates when no spell is selected and it's the player's turn. In all other contexts, **A** works as normal confirm.
 
 ---
 
@@ -224,6 +242,7 @@ The mod is split into focused modules:
 | `repeater.py`           | Direction auto-repeat with debounce                       |
 | `helpers.py`            | Shared event-creation utilities                           |
 | `browse.py`             | Spell / item browse mode state machine                    |
+| `walk_target.py`        | Hold-A walk-target mode (StepSpell + state machine)       |
 | `injection.py`          | Main event injection logic                                |
 | `patches.py`            | Monkey-patch wrappers for PyGameView methods              |
 

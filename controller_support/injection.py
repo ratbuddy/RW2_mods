@@ -31,6 +31,10 @@ from .browse import (
     is_browsing, browse_open, browse_cycle,
     browse_confirm, browse_cancel, clear_browse,
 )
+from .walk_target import (
+    is_walk_target_active, walk_target_enter,
+    walk_target_update, walk_target_exit,
+)
 
 # ---------------------------------------------------------------------------
 #  Repeater instances (module-level singletons)
@@ -99,6 +103,27 @@ def inject_controller_events(view):
         elif not (hasattr(view, 'cur_spell') and view.cur_spell):
             clear_browse()
 
+    # Auto-cancel walk-target if we left level state
+    if is_walk_target_active():
+        if state != STATE_LEVEL:
+            walk_target_exit(view, do_walk=False)
+
+    # ---- WALK-TARGET MODE ----
+    if is_walk_target_active():
+        # A released → attempt to walk, then exit
+        if not _ctrl.button_held(XboxButtons.A):
+            walk_target_exit(view, do_walk=True)
+            return
+
+        # B pressed → cancel without walking
+        if _ctrl.button_just_pressed(XboxButtons.B):
+            walk_target_exit(view, do_walk=False)
+            return
+
+        # Update cursor from stick direction
+        walk_target_update(view, _ctrl)
+        return  # consume all input while in walk-target mode
+
     # ---- BROWSE MODE ----
     if is_browsing() and state == STATE_LEVEL:
         if _ctrl.button_just_pressed(XboxButtons.A):
@@ -141,9 +166,20 @@ def inject_controller_events(view):
     # ---- BUTTON PRESSES ----
 
     if _ctrl.button_just_pressed(XboxButtons.A):
-        key = get_key_for_bind(view, KEY_BIND_CONFIRM)
-        if key:
-            injected.append(make_key_event(key))
+        # In STATE_LEVEL with no spell/deploy active → enter walk-target mode
+        if (state == STATE_LEVEL
+                and view.game
+                and not (hasattr(view, 'cur_spell') and view.cur_spell)
+                and not (hasattr(view, 'deploy_target') and view.deploy_target)
+                and hasattr(view, 'can_execute_inputs')
+                and view.can_execute_inputs()
+                and hasattr(view.game, 'p1') and view.game.p1):
+            walk_target_enter(view)
+            return  # skip remaining processing this frame
+        else:
+            key = get_key_for_bind(view, KEY_BIND_CONFIRM)
+            if key:
+                injected.append(make_key_event(key))
 
     if _ctrl.button_just_pressed(XboxButtons.B):
         key = get_key_for_bind(view, KEY_BIND_ABORT)

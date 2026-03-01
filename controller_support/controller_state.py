@@ -272,6 +272,10 @@ class ControllerState:
         """True while a button is held down."""
         return self.curr_buttons.get(btn, False)
 
+    def button_just_released(self, btn):
+        """True on the single frame a button transitions from pressed → released."""
+        return not self.curr_buttons.get(btn, False) and self.prev_buttons.get(btn, False)
+
     def lt_just_pressed(self):
         return self.curr_lt and not self.prev_lt
 
