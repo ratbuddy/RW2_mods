@@ -1,0 +1,3 @@
+# Generated at runtime — do not ship with releases
+controller_support.log
+__pycache__/
