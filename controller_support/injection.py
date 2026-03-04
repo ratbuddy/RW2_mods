@@ -8,7 +8,7 @@ Two entry points:
 
 Stick layout:
   Left stick / D-pad → movement AND spell targeting (the game auto-switches)
-  Right stick        → reserved for viewport camera scroll (deck_panels mod)
+  Right stick        → reserved for viewport camera scroll (steam_deck_support mod)
 """
 
 import time
@@ -289,7 +289,7 @@ def inject_controller_events(view):
     # direction key events here.
     #
     # Right stick is intentionally NOT used for targeting — it is reserved
-    # for viewport camera scrolling (deck_panels mod).  The left stick
+    # for viewport camera scrolling (steam_deck_support mod).  The left stick
     # handles both movement AND spell targeting (the game switches
     # automatically when a spell is selected).
     for d in left_repeater.update(combined_dir):

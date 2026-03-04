@@ -5,7 +5,7 @@ Adds Xbox/XInput gamepad support via pygame.joystick.
 
 Button mapping (Xbox layout):
   Left Stick / D-pad : Move (level) / Navigate (menus)
-  Right Stick        : Reserved for deck_panels viewport scroll
+  Right Stick        : Reserved for steam_deck_support viewport scroll
   A                  : Confirm / Cast / Interact
   B                  : Cancel / Abort / Back
   X                  : Pass Turn / Channel

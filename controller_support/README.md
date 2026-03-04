@@ -20,7 +20,7 @@ The mod is already in place at `mods/controller_support/`. It loads automaticall
 | Button                 | Action                                                           |
 | ---------------------- | ---------------------------------------------------------------- |
 | **Left Stick / D-pad** | Move (8 directions)                                              |
-| **Right Stick**        | Grid cursor — reserved for camera scroll (deck_panels) |
+| **Right Stick**        | Grid cursor — reserved for camera scroll (steam_deck_support) |
 | **A**                  | Confirm / Cast spell at cursor / Deploy / Hold to walk-target    |
 | **B**                  | Cancel current spell / Abort deploy / Open options menu          |
 | **X**                  | Pass turn / Channel                                              |

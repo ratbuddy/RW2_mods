@@ -5,11 +5,11 @@ improved Steam Deck and small-screen playability.
 
 ## Installation
 
-Place the `deck_panels` folder inside `RiftWizard2/mods/`.
+Place the `steam_deck_support` folder inside `RiftWizard2/mods/`.
 
 For controller support, also install the `controller_support` mod.
-The `deck_panels` mod must load **after** `controller_support` (mods
-load alphabetically, so `d` > `c` — this works by default).
+The `steam_deck_support` mod must load **after** `controller_support`
+(mods load alphabetically, so `s` > `c` — this works by default).
 
 ## Controls
 
@@ -63,7 +63,7 @@ patched so gameplay input works correctly in the expanded view.
 
 | File                 | Purpose                                 |
 |----------------------|-----------------------------------------|
-| `deck_panels.py`     | Entry point (loaded by mod system)      |
+| `steam_deck_support.py` | Entry point (loaded by mod system)   |
 | `patches.py`         | Monkey-patches for rendering and input  |
 | `panel_state.py`     | Panel open/close animation state        |
 | `viewport.py`        | Zoom level and camera state             |
