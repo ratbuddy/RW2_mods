@@ -82,14 +82,13 @@ def browse_cycle(view, delta):
 
 
 def browse_confirm(view):
-    """Confirm the current selection and inject a CONFIRM key so it casts immediately."""
-    global _browse_mode
-    _log(f"browse_confirm: {_browse_mode} index {_browse_index}")
-    _browse_mode = None
-    key = get_key_for_bind(view, KEY_BIND_CONFIRM)
-    if key:
-        view.events.append(make_key_event(key))
-
+	"""Confirm the current selection — exit browse mode but keep the spell
+	selected so the user can aim with the stick, then press A to cast."""
+	global _browse_mode
+	_log(f"browse_confirm: {_browse_mode} index {_browse_index}")
+	_browse_mode = None
+	# Don't inject CONFIRM here — let the user aim the spell first.
+	# The next A press (outside browse mode) will inject CONFIRM and cast.
 
 def browse_cancel(view):
     """Cancel browse mode and abort the previewed spell."""

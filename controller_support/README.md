@@ -20,7 +20,7 @@ The mod is already in place at `mods/controller_support/`. It loads automaticall
 | Button                 | Action                                                           |
 | ---------------------- | ---------------------------------------------------------------- |
 | **Left Stick / D-pad** | Move (8 directions)                                              |
-| **Right Stick**        | Grid cursor — aim spells or examine tiles                        |
+| **Right Stick**        | Grid cursor — reserved for camera scroll (deck_panels) |
 | **A**                  | Confirm / Cast spell at cursor / Deploy / Hold to walk-target    |
 | **B**                  | Cancel current spell / Abort deploy / Open options menu          |
 | **X**                  | Pass turn / Channel                                              |
@@ -43,13 +43,13 @@ Press **RB** to enter the spell browser. This is a modal cycling menu that uses 
 | **RB**                   | Open the spell browser (selects your first spell)                    |
 | **D-pad Up / Down**      | Cycle through your spell list (wraps around)                         |
 | **Left Stick Up / Down** | Also cycles through spells                                           |
-| **A**                    | Confirm selection — locks the spell in and enters **targeting mode** |
+| **A**                    | Confirm selection — keeps the spell selected for **aiming** |
 | **B**                    | Cancel — deselects the spell and closes the browser                  |
 | **RB** (again)           | Cancel — same as B                                                   |
 
-Once you confirm with **A**, you're in targeting mode:
+Once you confirm with **A**, the browser closes and you're in targeting mode:
 
-- Use the **Right Stick** to move the targeting cursor tile-by-tile
+- Use the **Left Stick / D-pad** to move the targeting cursor tile-by-tile
 - Press **A** to cast at the cursor position
 - Press **RB** to tab through valid targets
 - Press **B** to cancel the spell

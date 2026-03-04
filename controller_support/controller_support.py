@@ -5,7 +5,7 @@ Adds Xbox/XInput gamepad support via pygame.joystick.
 
 Button mapping (Xbox layout):
   Left Stick / D-pad : Move (level) / Navigate (menus)
-  Right Stick        : Grid cursor for spell targeting
+  Right Stick        : Reserved for deck_panels viewport scroll
   A                  : Confirm / Cast / Interact
   B                  : Cancel / Abort / Back
   X                  : Pass Turn / Channel
@@ -48,6 +48,7 @@ ctrl.try_init()
 print("[Controller Support] Controller support mod loaded successfully!")
 print("[Controller Support] Button layout: Xbox (A=Confirm, B=Cancel, X=Pass, Y=Char Sheet)")
 print("[Controller Support] Spells: RB to browse, LB to browse items, D-pad to cycle, A to pick")
+print("[Controller Support] Left stick handles both movement AND spell targeting")
 _log("Controller Support mod: import complete, all patches applied")
 _log(f"  pygame version: {pygame.version.ver}")
 _log(f"  controller connected at load time: {ctrl.connected}")
