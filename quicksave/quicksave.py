@@ -257,6 +257,23 @@ def _qs_new_game(self, *args, **kwargs):
 
 PyGameView.new_game = _qs_new_game
 
+
+# ---- hook: process_title_input ----
+# Allow F8 quickload from the main menu (e.g. after dying and returning to title).
+
+_orig_process_title_input = PyGameView.process_title_input
+
+
+def _qs_process_title_input(self):
+    for evt in [e for e in self.events if e.type == pygame.KEYDOWN]:
+        if evt.key == pygame.K_F8:
+            _qs_quickload(self)
+            return
+    _orig_process_title_input(self)
+
+
+PyGameView.process_title_input = _qs_process_title_input
+
 _log(
     "quicksave: installed (F5=quicksave, F8=quickload, works during gameover/reminisce)"
 )
